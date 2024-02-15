@@ -12,18 +12,22 @@ import java.time.LocalDateTime;
 public class PointUsageHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer PointHistoryID;
+    @Column(name = "point_history_id")
+    private Integer pointHistoryId;
 
     @ManyToOne
-    @JoinColumn(name = "UserID")
+    @JoinColumn(name = "userId")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "OrderID")
+    @JoinColumn(name = "orderId")
     private Order order;
 
-    private Integer PointsUsed;
-    private Integer RemainingPoints;
-    private LocalDateTime OrderDate;
+    @Column(name = "points_used")
+    private Integer pointsUsed;
+    @Column(name = "remaining_points")
+    private Integer remainingPoints;
+    @Column(name = "order_date")
+    private LocalDateTime orderDate;
 
 }

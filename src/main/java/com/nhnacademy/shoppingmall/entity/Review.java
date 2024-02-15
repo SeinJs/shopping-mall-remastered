@@ -12,17 +12,18 @@ import javax.persistence.*;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ReviewID;
+    @Column(name = "review_id")
+    private Integer reviewId;
 
     @ManyToOne
-    @JoinColumn(name = "ProductID")
+    @JoinColumn(name = "productId")
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "UserID")
+    @JoinColumn(name = "userId")
     private User user;
 
-    private Integer Rating;
-    private String Comments;
+    private Integer rating;
+    private String comments;
 
 }

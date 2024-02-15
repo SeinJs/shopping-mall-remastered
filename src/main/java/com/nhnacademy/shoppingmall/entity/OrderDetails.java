@@ -7,22 +7,24 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 public class OrderDetails {
 
     @EmbeddedId
     private Pk pk;
-    private Integer Quantity;
-    private BigDecimal UnitCost;
+    private Integer quantity;
+    @Column(name = "unit_cost")
+    private BigDecimal unitCost;
 
-    @MapsId("OrderID")
+    @MapsId("orderId")
     @ManyToOne
-    @JoinColumn(name = "OrderID")
+    @JoinColumn(name = "order_id")
     private Order order;
 
-    @MapsId("ProductID")
+    @MapsId("productId")
     @ManyToOne
-    @JoinColumn(name = "ProductID")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @EqualsAndHashCode
@@ -30,8 +32,10 @@ public class OrderDetails {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Pk implements Serializable {
-        private Integer OrderID;
-        private Integer ProductID;
+        @Column(name = "order_id")
+        private Integer orderId;
+        @Column(name = "product_id")
+        private Integer productId;
     }
 
 }

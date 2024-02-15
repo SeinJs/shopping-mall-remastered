@@ -3,10 +3,7 @@ package com.nhnacademy.shoppingmall.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,15 +14,23 @@ import java.util.List;
 public class User {
 
     @Id
-    private String UserID;
-    private String UserName;
-    private String UserPassword;
-    private String UserBirth;
-    private String UserAuth;
-    private Integer UserPoint;
-    private LocalDateTime CreatedAt;
-    private LocalDateTime LatestLoginAt;
-    private Integer Addresses;
+    @Column(name = "user_id")
+    private String userId;
+    @Column(name = "user_name")
+    private String userName;
+    @Column(name = "user_password")
+    private String userPassword;
+    @Column(name = "user_birth")
+    private String userBirth;
+    @Column(name = "user_auth")
+    private String userAuth;
+    @Column(name = "user_point")
+    private Integer userPoint;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+    @Column(name = "latest_login_at")
+    private LocalDateTime latestLoginAt;
+    private Integer addresses;
 
     @OneToMany(mappedBy = "user")
     private List<PointUsageHistory> pointUsageHistories;

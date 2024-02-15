@@ -61,7 +61,7 @@ class RepositoryTest {
     @Test
     void categoryRepositoryTest() {
         Category newCategory = new Category();
-        newCategory.setCategoryID(2);
+        newCategory.setCategoryId(2);
         newCategory.setCategoryName("Food");
         categoryRepository.save(newCategory);
 
@@ -72,10 +72,10 @@ class RepositoryTest {
     @Test
     void orderRepositoryTest() {
         Order order = orderRepository.findById(1).get();
-        assertThat(order.getOrderID()).isEqualTo(1);
+        assertThat(order.getOrderId()).isEqualTo(1);
 
         Product product = productRepository.findById(1).get();
-        assertThat(product.getProductID()).isEqualTo(1);
+        assertThat(product.getProductId()).isEqualTo(1);
 
         OrderDetails orderDetails = orderDetailsRepository.findById(new OrderDetails.Pk(1,1)).get();
         assertThat(orderDetails.getOrder()).isEqualTo(order);
@@ -85,7 +85,7 @@ class RepositoryTest {
     @Test
     void pointUsageHistoryRepositoryTest() {
         Order order = orderRepository.findById(1).get();
-        assertThat(order.getOrderID()).isEqualTo(1);
+        assertThat(order.getOrderId()).isEqualTo(1);
 
         User user = userRepository.findById("admin").get();
         assertThat(user.getUserName()).isEqualTo("관리자");
@@ -98,7 +98,7 @@ class RepositoryTest {
     @Test
     void reviewRepositoryTest() {
         Product product = productRepository.findById(1).get();
-        assertThat(product.getProductID()).isEqualTo(1);
+        assertThat(product.getProductId()).isEqualTo(1);
 
         User user = userRepository.findById("admin").get();
         assertThat(user.getUserName()).isEqualTo("관리자");
@@ -111,10 +111,10 @@ class RepositoryTest {
     @Test
     void shoppingCartRepositoryTest() {
         Product product = productRepository.findById(1).get();
-        assertThat(product.getProductID()).isEqualTo(1);
+        assertThat(product.getProductId()).isEqualTo(1);
 
         ShoppingCart shoppingCart = shoppingCartRepository.findById(1).get();
         assertThat(shoppingCart.getProduct()).isEqualTo(product);
-        assertThat(shoppingCart.getCartID()).isEqualTo("admin");
+        assertThat(shoppingCart.getCartId()).isEqualTo("admin");
     }
 }

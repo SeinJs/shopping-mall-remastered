@@ -1,0 +1,10 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<ul>
+    <li th:each="order : ${orderList}">
+        <p th:text="${order}"></p>
+    </li>
+</ul>
+</body>
+</html>

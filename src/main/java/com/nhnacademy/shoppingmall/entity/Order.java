@@ -14,14 +14,18 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer OrderID;
+    @Column(name = "order_id")
+    private Integer orderId;
 
     @ManyToOne
-    @JoinColumn(name = "UserID")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    private LocalDateTime OrderDate;
-    private LocalDateTime ShipDate;
+    @Column(name = "order_date")
+    private LocalDateTime orderDate;
+
+    @Column(name = "ship_date")
+    private LocalDateTime shipDate;
 
     @OneToMany(mappedBy = "order")
     private List<OrderDetails> orderDetails;

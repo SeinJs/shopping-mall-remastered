@@ -12,14 +12,15 @@ import javax.persistence.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer AddressID;
+    @Column(name = "address_id")
+    private Integer addressId;
 
     @ManyToOne
-    @JoinColumn(name = "UserID")
+    @JoinColumn(name = "userId")
     private User user;
 
-    private String Street;
-    private String City;
-    private String State;
-    private String ZipCode;
+    private String street;
+    private String city;
+    private String state;
+    private String zipCode;
 }

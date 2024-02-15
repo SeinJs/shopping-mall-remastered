@@ -12,14 +12,17 @@ import java.time.LocalDateTime;
 public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer RecordID;
+    @Column(name = "record_id")
+    private Integer recordId;
 
-    private String CartID;
-    private Integer Quantity;
+    @Column(name = "cart_id")
+    private String cartId;
+    private Integer quantity;
 
     @ManyToOne
-    @JoinColumn(name = "ProductID")
+    @JoinColumn(name = "productId")
     private Product product;
 
-    private LocalDateTime DateCreated;
+    @Column(name = "date_created")
+    private LocalDateTime dateCreated;
 }
