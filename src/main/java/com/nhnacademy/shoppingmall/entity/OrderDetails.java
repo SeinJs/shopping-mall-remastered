@@ -27,6 +27,8 @@ public class OrderDetails {
 
     @EqualsAndHashCode
     @Embeddable
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Pk implements Serializable {
         private Integer OrderID;
         private Integer ProductID;

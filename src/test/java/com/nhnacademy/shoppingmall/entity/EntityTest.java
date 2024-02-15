@@ -13,11 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
@@ -35,17 +33,16 @@ class EntityTest {
         User user = entityManager.find(User.class, "admin");
         assertThat(user.getUserID()).isEqualTo("admin");
 
-        User newUser = new User(
-                "user1",
-                "사용자1",
-                "user1",
-                "19990909",
-                "ROLE_USER",
-                1000000,
-                LocalDateTime.now(),
-                null,
-                0
-        );
+        User newUser = new User();
+        newUser.setUserID("user1");
+        newUser.setUserName("사용자1");
+        newUser.setUserPassword("user1");
+        newUser.setUserAuth("ROLE_USER");
+        newUser.setUserBirth("19990909");
+        newUser.setUserPoint(1000000);
+        newUser.setCreatedAt(LocalDateTime.now());
+        newUser.setLatestLoginAt(null);
+        newUser.setAddresses(0);
 
         entityManager.persist(newUser);
 
@@ -92,16 +89,14 @@ class EntityTest {
     void OrderEntityTest() {
         Order newOrder = entityManager.find(Order.class, 1);
         assertThat(newOrder.getOrderID()).isEqualTo(1);
-        assertThat(newOrder.getUserID()).isEqualTo("admin");
+        assertThat(newOrder.getUser().getUserID()).isEqualTo("admin");
     }
     @Test
     void OrderDetailsEntityTest() {
-        OrderDetails.Pk pk = new OrderDetails.Pk();
-        pk.setOrderID(1);
-        pk.setProductID(1);
+        OrderDetails.Pk pk = new OrderDetails.Pk(1,1);
 
         OrderDetails newOrderDetails = entityManager.find(OrderDetails.class, pk);
-        assertThat(newOrderDetails.getOrderID()).isEqualTo(1);
+        assertThat(newOrderDetails.getOrder().getOrderID()).isEqualTo(1);
         assertThat(newOrderDetails.getQuantity()).isEqualTo(1);
     }
     @Test
